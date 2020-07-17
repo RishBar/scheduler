@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem"
+import PropTypes from 'prop-types';
 
 export default function InterviewerList(props) {
 
@@ -16,19 +17,6 @@ export default function InterviewerList(props) {
       />
     );
   });
-  // const interviewerList = props.interviewers.map(interviewer => {
-  //   return <section className="interviewer">
-  //             <h4 className="interviewers__header text--light">Interviewer</h4>
-  //             <ul>
-  //               <InterviewerListItem 
-  //                 name={interviewer.name}
-  //                 avatar={interviewer.avatar}
-  //                 selected={props.interviewer === interviewer.id}
-  //                 setInterviewer={event => {props.setInterviewer(interviewer.id)}}
-  //                 />
-  //             </ul>
-  //          </section>
-  // })
   return <section className="interviewers">
             <h4 className="interviewers__header text--light">Interviewer</h4>
             <ul className="interviewers__list">{interviewers}</ul>
