@@ -1,3 +1,4 @@
+// Helper selector functions to return object containing appointment for a specific day, and another function for returning interview for a specific day
 export default function getAppointmentsForDay(state, day) {
   const getAppointmentId = () => {
     for (const days of state.days) {

@@ -32,7 +32,6 @@ export default function Application(props) {
   
   return (
     <main className="layout">
-      {/* < Button /> */}
       <section className="sidebar">
         <img 
           className="sidebar--centered"

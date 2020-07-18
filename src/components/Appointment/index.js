@@ -9,7 +9,7 @@ import Confirm from "./Confirm"
 import Error from "./Error"
 import useVisualMode from "../../hooks/useVisualMode";
 
-
+// assign visual mode constants used to setMode in useVisualMode.js
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -21,7 +21,8 @@ const ERROR_SAVE = "ERROR_SAVE"
 const ERROR_DELETE = "ERROR_DELETE"
 
 export default function Appointment(props) {
-
+  
+  //define functions to pass as event handler props to the different child components rendered in each appointment component
   function deleteInterview() {
     if (mode === SHOW) { 
       transition(CONFIRM)
@@ -56,12 +57,16 @@ export default function Appointment(props) {
     .catch((error) => transition(ERROR_SAVE, true))
   }
 
+  // import functions used to transition to different visual modes and set mode to SHOW or EMPTY depending on if interview is booked
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  // render different components according to which visual Mode is set
   return (
     <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
       <Show
