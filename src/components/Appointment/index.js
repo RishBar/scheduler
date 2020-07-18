@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import "./styles.scss";
 import Header from "./Header"
 import Show from "./Show"
@@ -22,13 +22,9 @@ const ERROR_DELETE = "ERROR_DELETE"
 
 export default function Appointment(props) {
 
-  function onConfirm() {
-    transition(CONFIRM)
-  };
-
   function deleteInterview() {
     if (mode === SHOW) { 
-      onConfirm()
+      transition(CONFIRM)
     }
     if (mode === CONFIRM) {
     transition(DELETING)
@@ -45,6 +41,17 @@ export default function Appointment(props) {
     };
     transition(SAVING)
     props.bookInterview(props.id, interview)
+    .then((res) => transition(SHOW))
+    .catch((error) => transition(ERROR_SAVE, true))
+  }
+
+  function edit(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING)
+    props.editInterview(props.id, interview)
     .then((res) => transition(SHOW))
     .catch((error) => transition(ERROR_SAVE, true))
   }
@@ -70,7 +77,7 @@ export default function Appointment(props) {
       {mode === CREATE && <Form name="" interviewers={props.interviewers} 
       interviewer="" onSave={save} onCancel={back} />}
       {mode === EDIT && <Form name={props.interview.student} interviewers={props.interviewers} 
-      interviewer={props.interview.interviewer.id} onSave={save} onCancel={back} />}
+      interviewer={props.interview.interviewer.id} onSave={edit} onCancel={back} />}
       {mode === ERROR_DELETE && <Error message="Could not delete appointment try again later." onClose={back} />}
       {mode === ERROR_SAVE && <Error message="Could not save appointment try again later." onClose={back} />}
     </article>
