@@ -45,3 +45,6 @@ npm run storybook
 
 ## Screen Shots
 
+!["Show"](https://github.com/RishBar/scheduler/blob/master/docs/show.png?raw=true)
+!["Form"](https://github.com/RishBar/scheduler/blob/master/docs/form.png?raw=true)
+!["New Appointment"](https://github.com/RishBar/scheduler/blob/master/docs/newappointment.png?raw=true)
