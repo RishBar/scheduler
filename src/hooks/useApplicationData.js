@@ -37,13 +37,13 @@ export default function useApplicationData() {
     const spotsDecrease = () => {
       const daysArr = [...state.days]
       // if id of appointment exists in day.appointment array, then decrease day.spots by 1
-      daysArr.map(day => {
+      for (let day of daysArr) {
         for(let appointment of day.appointments) {
           if (appointment === id) {
             day.spots--;
           }
         }
-      })
+      }
       return daysArr;
     }
     return Promise.all([
@@ -80,14 +80,13 @@ export default function useApplicationData() {
     const spotsIncrease = () => {
       const daysArr = [...state.days]
       // if id of appointment exists in day.appointment array, then increase day.spots by 1
-      daysArr.map(day => {
+      for (let day of daysArr) {
         for(let appointment of day.appointments) {
           if (appointment === id) {
             day.spots++;
           }
         }
-        
-      })
+      }
       return daysArr;
     } 
     return axios.delete(`/api/appointments/${id}`)
